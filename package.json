@@ -1,0 +1,24 @@
+{
+  "name": "nd-geojson",
+  "version": "0.1.0",
+  "description": "Stream GeoJSON from a set of line-delimited features",
+  "bin": {
+    "nd-geojson": "lib/cli.js"
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "tape test/*.test.js"
+  },
+  "keywords": [
+    "generator-npm-pasta"
+  ],
+  "author": "rodowi",
+  "license": "ISC",
+  "repository": "rodowi/nd-geojson",
+  "devDependencies": {
+    "tape": "^4.6.0"
+  },
+  "dependencies": {
+    "minimist": "^1.2.0"
+  }
+}
