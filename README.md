@@ -2,7 +2,7 @@
 
 Stream GeoJSON from a set of line-delimited features
 
-Line delimited features are faster and cheaper to process, but sometimes you need to wrap them in a FeatureCollection to visualize them, e.g. `% cat line-delimited.json | nd-geojson | geojsonio`.
+Line-delimited GeoJSON features are faster and cheaper to process, but sometimes you need a FeatureCollection to visualize them, e.g. `% cat line-delimited.json | nd-geojson | geojsonio`.
 
 Usage:
 
@@ -18,3 +18,5 @@ Usage:
 }
 ```
 _A set of line-delimited features wrapped in a FeatureCollection_
+
+Based on [maxogden/ndjson](https://github.com/maxogden/ndjson).
