@@ -1,37 +1,35 @@
 var fs = require('fs');
 var test = require('tape');
 var ndgeo = require('../lib/index');
-var ndjson = require('ndjson');
 var Readable = require('stream').Readable;
 
 var fixture = fs.readFileSync(__dirname + '/fixture.json');
 
 test('builds feature collection', function (t) {
-  t.plan(1);
+  t.plan(7);
 
-  var start = '{"type": "FeatureCollection","features": [';
-  var trail = {
-    type: 'Feature',
-    geometry: {
-      type: 'LineString',
-      coordinates: [[0,0], [0,0], [0,0], [0,0]]
-    },
-    properties: {}
-  };
-  var fin = ']}';
-
-  console.log(start);
+  var results = [];
 
   var rs = new Readable;
-  rs.pipe(ndjson.parse())
-    .on('data', function(feature) {
-      if (!feature.properties) feature.properties = {};
-      console.log('%j,', feature);
+  rs.pipe(ndgeo())
+    .on('data', function(geochunk) {
+      results.push(geochunk.toString());
     })
-    .on('end', function () {
-      console.log('%j', trail);
-      console.log(fin);
-      t.true(true, 'it ended');
+    .on('end', function (foo) {
+      var found = results[0];
+      var wants = '{ "type": "FeatureCollection", "features": [\n';
+      t.equal(found, wants, 'opens a FeatureCollection');
+
+      found = results[1];
+      t.equal(found.slice(-2), ',\n', 'features have a trailing comma');
+
+      found = JSON.parse('[' + found.slice(0, -2) + ']');
+      t.equal(found[0].type, 'Feature', 'wraps an array of Feature objects');
+      t.ok(found[0].geometry, 'having geometry');
+      t.equal(found[1].geometry.type, 'LineString', 'keeping deep properties');
+      t.ok(found[0].properties, 'and adds missing properties');
+
+      t.equal(results.pop(), ']}', 'closes a FeatureCollection');
     });
 
   rs.push(fixture);
