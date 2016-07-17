@@ -1,6 +1,6 @@
 {
   "name": "nd-geojson",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Stream GeoJSON from a set of line-delimited features",
   "bin": {
     "nd-geojson": "lib/cli.js"
