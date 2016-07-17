@@ -29,6 +29,14 @@ We can pipe that into nd-geojson and get a GeoJSON-compliant FeatureCollection:
 ```
 _A set of line-delimited features wrapped in a FeatureCollection_
 
+**Install**
+
+```bash
+% npm install -g nd-geojson
+```
+
+**Kudos**
+
 Inspired by [maxogden/ndjson](https://github.com/maxogden/ndjson) and [mcollina/split2](https://github.com/mcollina/split2).
 
 Similar work: [mapbox/geojson-stream](https://github.com/mapbox/geojson-stream) builds a FeatureCollection from an **array** of Feature objects.
