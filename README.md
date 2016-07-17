@@ -19,4 +19,4 @@ Usage:
 ```
 _A set of line-delimited features wrapped in a FeatureCollection_
 
-Based on [maxogden/ndjson](https://github.com/maxogden/ndjson).
+Inspired by [maxogden/ndjson](https://github.com/maxogden/ndjson) and [mcollina/split2](https://github.com/mcollina/split2).
